@@ -1,0 +1,12 @@
+<div class="main-ctr col">
+  <div class="card col">
+    <div class="topbar row">
+      <strong class="head primary">Pending Applications</strong>
+      <div class="flex-grow"></div>
+      <div class="btn btn-primary" [class.btn-disabled]="!selectedUser" (click)="viewApplication()">View Application</div>
+    </div>
+    <div class="items col">
+      <app-ag-grid [header]="head" [url]="url" (rowSelected)="rowSelected($event)"></app-ag-grid>
+    </div>
+  </div>
+</div>

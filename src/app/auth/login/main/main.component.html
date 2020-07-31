@@ -1,0 +1,19 @@
+<div class="ctr col">
+  <div class="form">
+    <h2 class="primary">Teachup.io Admin</h2>
+    <form action="">
+      <div class="form-item col">
+        <label for="username">Username</label>
+        <input type="text" placeholder="@username">
+      </div>
+      <div class="form-item col">
+        <label for="username">Password</label>
+        <input type="password" placeholder="********">
+      </div>
+      <div class="btn btn-primary row" (click)="login()">
+        <span *ngIf="!loggingIn">Login</span>
+        <img *ngIf="loggingIn" src="/assets/utilities/spinner-white.png" class="spin spin-sm" alt="">
+      </div>
+    </form>
+  </div>
+</div>

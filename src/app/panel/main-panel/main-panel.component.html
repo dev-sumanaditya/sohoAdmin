@@ -1,0 +1,24 @@
+<nav class="row nav">
+  <img class="menuBtn" src="/assets/utilities/menu.png" alt="" (click)="toggleMenu()">
+  <a href="" class="brand primary">Teachup.io <span>Admin</span></a>
+  <img src="/assets/utilities/spinner.png" class="spin spin-sm spinner" alt="loader">
+  <div class="flex-grow"></div>
+  <div class="user row">
+    <strong class="primary">Jhon Doe</strong>
+    <img src="/assets/utilities/down.png" alt="">
+  </div>
+</nav>
+<div class="pane row">
+  <div class="sidemenu col" [class.shrinkMenu]="!sideMenuOpen">
+    <div class="ctt">
+      <a routerLink="{{'/' + i.url}}" class="menuItem row" *ngFor="let i of menu" routerLinkActive="navActive">
+        <img [src]="['/assets/utilities/'+ i.icon + '.png']" alt="">
+        <strong>{{i.name}}</strong>
+
+      </a>
+    </div>
+  </div>
+  <div class="outlet flex-grow">
+    <router-outlet></router-outlet>
+  </div>
+</div>

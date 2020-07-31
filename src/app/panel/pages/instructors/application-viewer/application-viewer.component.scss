@@ -1,0 +1,45 @@
+.ct {
+  .top {
+    margin-top: 40px;
+    align-items: center;
+    .image {
+      margin-right: 20px;
+      img {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+      }
+    }
+    .right {
+      .name {
+        margin: 0 0 10px 0;
+      }
+    }
+    .last {
+      min-width: 200px;
+      .btn {
+        margin-bottom: 10px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .about {
+    margin-top: 40px;
+  }
+  .answers {
+    margin-top: 30px;
+    .item {
+      margin-bottom: 20px;
+      label {
+        font-weight: 500;
+        font-size: 16px;
+      }
+      .ans {
+        font-size: 14px;
+        margin-top: 8px;
+      }
+    }
+  }
+}

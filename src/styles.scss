@@ -1,1 +1,219 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+
+.ag-theme-alpine {
+    @include ag-theme-alpine();
+}
+
+$color-primary: #0052cc;
+$color-secondary: #ddd;
+
+
+
+
+// Colors
+.primary {
+  color: $color-primary;
+}
+.primary-bg {
+  background-color: $color-primary;
+}
+.secondary {
+  color: $color-secondary;
+}
+.secondary-bg {
+  background-color: $color-secondary;
+}
+.dark {
+  color: #333;
+}
+.white {
+  color: white;
+}
+.success {
+  color: rgb(7, 189, 104);
+}
+.danger {
+  color: crimson;
+}
+
+
+
+// Layout
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.row-sm {
+  display: flex;
+  flex-direction: row;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.f1 {
+  flex: 1;
+}
+.f2 {
+  flex: 2;
+}
+.f3 {
+  flex: 3;
+}
+.f4 {
+  flex: 4;
+}
+.f5 {
+  flex: 5;
+}
+.f6 {
+  flex: 6;
+}
+.f7 {
+  flex: 7;
+}
+.f8 {
+  flex: 8;
+}
+.flex-grow {
+  flex-grow: 1;
+}
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+
+// components
+.btn {
+  padding: 8px 15px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+.btn-primary {
+  border: 2px solid $color-primary;
+  background-color: $color-primary;
+  color: white;
+}
+.btn-outline {
+  border: 2px solid $color-primary;
+  background-color: white;
+  color: $color-primary !important;
+  font-weight: 500;
+}
+.btn-success {
+  background-color: rgb(7, 189, 104);
+  color: white;
+}
+.btn-danger {
+  background-color: crimson;
+  color: white;
+}
+.btn-disabled {
+  cursor: not-allowed;
+  filter: grayscale(100);
+  &:hover {
+    filter: grayscale(100);
+  }
+}
+
+.main-ctr {
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+
+
+
+//utility
+.spin {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+.spin-sm {
+  height: 22px;
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+//Fixes
+a {
+  text-decoration: none;
+  color: #333;
+}
+* {
+  font-family: 'Rubik', sans-serif;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+}
+
+
+
+
+
+
+
+
+/* Desktop */
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+}
+
+
+/* Tab */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+
+/* tab/cellphone */
+@media (min-width: 481px) and (max-width: 767px) {
+
+}
+
+/* Smartphone */
+@media (min-width: 320px) and (max-width: 480px) {
+  .row-sm {
+    flex-direction: column;
+  }
+}

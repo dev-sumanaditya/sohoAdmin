@@ -1,0 +1,15 @@
+<div class="main-ctr col">
+  <div class="card col">
+    <div class="topbar row">
+      <strong class="head primary">Site Admins</strong>
+      <div class="flex-grow"></div>
+      <div class="btns row">
+        <a routerLink="/instructors/create" class="btn btn-primary">Create Site Admin</a>
+        <div class="btn btn-outline" [class.btn-disabled]="!selectedUser" (click)="viewAdmin()">View Admin</div>
+      </div>
+    </div>
+    <div class="grid col">
+      <app-ag-grid [header]="head" [url]="url" (rowSelected)="rowSelected($event)"></app-ag-grid>
+    </div>
+  </div>
+</div>

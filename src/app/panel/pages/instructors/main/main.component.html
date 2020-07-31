@@ -1,0 +1,16 @@
+<div class="main-ctr col">
+  <div class="card col">
+    <div class="topbar row">
+      <strong class="head primary">Instructors</strong>
+      <div class="flex-grow"></div>
+      <div class="btns row">
+        <a routerLink="/instructors/create" class="btn btn-primary">Create New</a>
+        <a routerLink="/instructors/applications" class="btn btn-primary">Pending Applications</a>
+        <div class="btn btn-outline" [class.btn-disabled]="!selectedUser" (click)="openUser()">View Instructor</div>
+      </div>
+    </div>
+    <div class="grid col">
+      <app-ag-grid [header]="head" [url]="url" (rowSelected)="rowSelected($event)"></app-ag-grid>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="container row">
+  <ag-grid-angular
+    #agGrid
+    style="width: 100%; height: 500px;"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (selectionChanged)="onSelectionChanged()"
+  >
+</ag-grid-angular>
+</div>
