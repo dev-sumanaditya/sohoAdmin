@@ -1,19 +1,22 @@
 <div class="ctr col">
   <div class="form">
     <h2 class="primary">Teachup.io Admin</h2>
-    <form action="">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-item col">
         <label for="username">Username</label>
-        <input type="text" placeholder="@username">
+        <input type="text" placeholder="@username" formControlName="username">
       </div>
       <div class="form-item col">
         <label for="username">Password</label>
-        <input type="password" placeholder="********">
+        <input type="password" placeholder="********" formControlName="pass">
       </div>
       <div class="btn btn-primary row" (click)="login()">
         <span *ngIf="!loggingIn">Login</span>
         <img *ngIf="loggingIn" src="/assets/utilities/spinner-white.png" class="spin spin-sm" alt="">
       </div>
+      <small class="danger" *ngIf="submitted && LoginFormControl.username.errors">Enter a valid username.</small>
+      <small class="danger" *ngIf="submitted && LoginFormControl.pass.errors">Password must be 8 characters long</small>
+      <small class="danger" *ngIf="error && submitted">{{error}}</small>
     </form>
   </div>
 </div>

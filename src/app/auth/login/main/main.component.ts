@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
         [
           Validators.required,
           Validators.maxLength(60),
-          Validators.minLength(5),
+          Validators.minLength(3),
         ],
       ],
       pass: [
