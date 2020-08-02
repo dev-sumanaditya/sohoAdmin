@@ -31,7 +31,7 @@ export class AgGridComponent implements OnInit {
     this.columnDefs = this.header;
     this.dataUrl = this.url;
 
-    this.http.get(this.dataUrl).subscribe((data) => {
+    this.http.get<any>(this.dataUrl).subscribe(({data}) => {
       this.rowData = data;
       this.loaded = true;
       this.dataLoaded.emit(true);

@@ -26,6 +26,7 @@
   }
   .spinner {
     margin-left: 10px;
+    height: 30px;
   }
   .user {
     cursor: pointer;
@@ -33,13 +34,39 @@
     padding: 8px 15px;
     border: 2px solid #0052cc;
     border-radius: 30px;
+    position: relative;
+    transition-delay: 1s !important;
+
     &:hover {
       background-color: #eee;
       box-shadow: 0px 1px 5px -3px #444;
+      .dropdown {
+        max-height: 800px;
+        display: flex;
+      }
     }
     img {
       height: 20px;
       margin-left: 8px;
+    }
+    .dropdown {
+      transition-delay: 1s !important;
+      position: absolute;
+      border-radius: 4px;
+      z-index: 2000;
+      background-color: #fff;
+      top: 35px;
+      right: 0;
+      padding: 0 20px;
+      box-sizing: border-box;
+      border: 1px solid #888;
+      min-width: 150px;
+      max-height: 0px;
+      overflow: hidden;
+      display: none;
+      .item {
+        padding: 8px 0;
+      }
     }
   }
 }

@@ -1,0 +1,41 @@
+.form {
+  margin-top: 40px;
+  .formItem {
+    margin-bottom: 15px;
+    label {
+      font-weight: 500;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: #0052cc;
+    }
+    input {
+      padding: 4px;
+      width: 30%;
+    }
+  }
+  .btn {
+    width: max-content;
+  }
+}
+
+.two {
+  justify-content: space-between;
+  .sec {
+    width: 49%;
+    box-sizing: border-box;
+    .roles {
+      margin-top: 20px;
+      .item {
+        align-items: center;
+        margin-bottom: 6px;
+        input {
+          margin-right: 10px;
+        }
+        label {
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

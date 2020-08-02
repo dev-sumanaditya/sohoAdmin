@@ -1,5 +1,23 @@
 <div class="main-ctr col">
   <div class="card col">
     <strong class="primary">Admin Settings</strong>
+    <div class="row account">
+      <div class="image">
+        <img [src]="data.photoURL" alt="">
+      </div>
+      <div class="right col">
+        <h4>{{data.displayName}}</h4>
+        <h4>{{data.email}}</h4>
+        <h4 *ngIf="data.phonenumber">{{data.phoneNumber}}</h4>
+        <small>UID: {{data.uid}}</small>
+      </div>
+    </div>
+    <div class="navs">
+      <a class="nav row" *ngFor="let i of settings" routerLink="./{{i.url}}">
+        <strong class="primary name">{{i.name}}</strong>
+        <div class="flex-grow"></div>
+        <img class="next" src="/assets/utilities/next.png" alt="">
+      </a>
+    </div>
   </div>
 </div>

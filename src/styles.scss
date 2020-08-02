@@ -140,6 +140,19 @@ $color-secondary: #ddd;
   box-sizing: border-box;
 }
 
+.backRow {
+  align-items: center;
+  .back {
+    height: 25px;
+    margin-right: 20px;
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      border-radius: 4px;
+      background-color: #eee;
+    }
+  }
+}
 
 
 
@@ -185,6 +198,14 @@ body, html {
   margin: 0;
   padding: 0;
   background-color: #eee;
+}
+img {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 

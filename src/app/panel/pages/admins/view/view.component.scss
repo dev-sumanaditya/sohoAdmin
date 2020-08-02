@@ -1,0 +1,47 @@
+.ct {
+  margin-top: 40px;
+}
+.top {
+  .image {
+    margin-right: 20px;
+    img {
+      height: 100px;
+      min-height: 100px;
+      min-width: 100px;
+      width: 100px;
+      border-radius: 50%;
+      background-color: #ddd;
+    }
+  }
+  .info {
+    h3 {margin: 5px 0;}
+    .phone {
+      margin-top: 10px;
+    }
+  }
+}
+
+.two {
+  margin-top: 40px;
+  .on {
+    font-size: 14px;
+    margin-bottom: 10px;
+    span {margin-right: 10px;}
+  }
+}
+.three {
+  margin-top: 40px;
+  .hd {
+    margin-bottom: 15px;
+  }
+  .roles {
+    flex-wrap: wrap;
+    .role {
+      border: 1px solid #0052cc;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-right: 5px;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.navs {
+  margin-top: 40px;
+  .nav {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    align-items: center;
+    border-radius: 4px;
+    width: 400px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0px 1px 5px -3px #444;
+    margin-bottom: 10px;
+    &:hover {
+      background-color: #eee;
+    }
+    .next {
+      height: 25px;
+    }
+    .name {
+      font-size: 13px;
+    }
+  }
+}
+
+.account {
+  margin-top: 40px;
+  align-items: center;
+  .image {
+    margin-right: 30px;
+    img {
+      height: 100px;
+      width: 100px;
+      min-height: 100px;
+      min-width: 100px;
+      background-color: #ddd;
+      border-radius: 50%;
+    }
+  }
+  .right {
+    h4 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 400;
+    }
+  }
+}

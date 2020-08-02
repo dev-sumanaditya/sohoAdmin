@@ -4,7 +4,7 @@
       <strong class="head primary">Site Admins</strong>
       <div class="flex-grow"></div>
       <div class="btns row">
-        <a routerLink="/instructors/create" class="btn btn-primary">Create Site Admin</a>
+        <a (click)="createAdmin()" class="btn btn-primary"><span *ngIf="!selectedUser">Create Site Admin</span><span *ngIf="selectedUser">Edit this Admin</span></a>
         <div class="btn btn-outline" [class.btn-disabled]="!selectedUser" (click)="viewAdmin()">View Admin</div>
       </div>
     </div>

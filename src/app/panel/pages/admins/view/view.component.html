@@ -1,0 +1,34 @@
+<div class="main-ctr">
+  <div class="card col">
+    <div class="row backRow">
+      <img src="/assets/utilities/back1.png" class="back" alt="" (click)="backClicked()">
+      <strong class="head primary">Site Admin</strong>
+    </div>
+    <div class="ct col" *ngIf="adminData">
+      <div class="row top">
+        <div class="image">
+          <img [src]="adminData.photoURL" alt="">
+        </div>
+        <div class="info col">
+          <h3 class="primary">{{adminData.displayName}}</h3>
+          <strong class="dark">{{adminData.email}}</strong>
+          <strong class="dark phone">{{adminData.phoneNumber}}</strong>
+        </div>
+      </div>
+
+      <div class="two col">
+        <strong class="dark on"><span class="primary">ID:</span> {{adminData.id}}</strong>
+        <strong class="dark on"><span class="primary">UID:</span> {{adminData.uid}}</strong>
+        <strong class="dark on"><span class="primary">Email Verified:</span> {{adminData.emailVerified}}</strong>
+        <strong class="dark on"><span class="primary">Created at:</span> {{adminData.createdAt}}</strong>
+        <strong class="dark on"><span class="primary">Updated at:</span> {{adminData.updatedAt}}</strong>
+      </div>
+      <div class="three col" *ngIf="adminData.roles.length > 0">
+        <strong class="primary hd">Roles</strong>
+        <div class="roles row">
+          <div class="role primary" *ngFor="let i of adminData.roles">{{i.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

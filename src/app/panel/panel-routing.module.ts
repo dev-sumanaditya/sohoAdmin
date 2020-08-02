@@ -11,6 +11,7 @@ const routes: Routes = [
     {path: 'admins', loadChildren: () => import('./pages/admins/admins.module').then(m => m.AdminsModule)},
     {path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)},
     {path: 'website-settings', loadChildren: () => import('./pages/website/website.module').then(m => m.WebsiteModule)},
+    {path: 'courses', loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesModule)},
     {path: '', redirectTo: 'dashboard'}
   ]}
 ];

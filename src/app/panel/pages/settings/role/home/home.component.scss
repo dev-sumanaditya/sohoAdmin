@@ -1,0 +1,76 @@
+.ct {
+  margin-top: 40px;
+  .btn {
+    margin-right: 10px;
+  }
+
+  .two {
+    .formItem {
+      margin-bottom: 20px;
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #0052cc;
+        margin-bottom: 5px;
+      }
+      input.text {
+        width: 300px;
+        padding: 5px;
+        margin-top: 5px;
+      }
+
+      select {
+        padding: 5px;
+      }
+
+      .actns {
+        margin-top: 10px;
+        .chkbox {
+          input {
+            margin-right: 10px;
+          }
+          label {
+            color: #333 !important;
+          }
+        }
+      }
+    }
+    .secs {
+      justify-content: space-between;
+      .sec {
+        width: 49%;
+      }
+    }
+
+    .pems {
+      margin-top: 20px;
+      .pem {
+        font-weight: 500;
+        padding: 5px;
+        border: 1px solid #ddd;
+        margin-bottom: 5px;
+        &:hover {
+          background-color: #eee;
+        }
+        .name {
+          margin-right: 10px;
+        }
+        img {
+          height: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .three {
+    .roless {
+      margin-top: 20px;
+      flex-wrap: wrap;
+      .rolee {
+        padding: 5px;
+        font-size: 12px;
+      }
+    }
+  }
+}

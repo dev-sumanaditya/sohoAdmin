@@ -1,20 +1,22 @@
-<nav class="row nav">
+<nav class="row nav" *ngIf="userData">
   <img class="menuBtn" src="/assets/utilities/menu.png" alt="" (click)="toggleMenu()">
   <a href="" class="brand primary">Teachup.io <span>Admin</span></a>
-  <img src="/assets/utilities/spinner.png" class="spin spin-sm spinner" alt="loader">
+  <img src="/assets/utilities/spinner.png" class="spin spin-sm spinner" alt="loader" *ngIf="loading">
   <div class="flex-grow"></div>
   <div class="user row">
-    <strong class="primary">Jhon Doe</strong>
+    <strong class="primary">{{userData.displayName}}</strong>
     <img src="/assets/utilities/down.png" alt="">
+    <div class="dropdown col">
+      <strong class="danger item" (click)="logOut()">Logout</strong>
+    </div>
   </div>
 </nav>
-<div class="pane row">
+<div class="pane row" *ngIf="userData">
   <div class="sidemenu col" [class.shrinkMenu]="!sideMenuOpen">
     <div class="ctt">
       <a routerLink="{{'/' + i.url}}" class="menuItem row" *ngFor="let i of menu" routerLinkActive="navActive">
         <img [src]="['/assets/utilities/'+ i.icon + '.png']" alt="">
         <strong>{{i.name}}</strong>
-
       </a>
     </div>
   </div>

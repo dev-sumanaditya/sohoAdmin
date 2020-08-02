@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { AgGridComponent } from './ag-grid/ag-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     SharedRoutingModule,
     AgGridModule.withComponents([]),
-    HttpClientModule
   ],
   exports: [
     AgGridComponent

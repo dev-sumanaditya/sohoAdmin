@@ -1,0 +1,41 @@
+<div class="main-ctr col">
+  <div class="card col">
+    <div class="backRow row">
+      <img src="/assets/utilities/back1.png" alt="" class="back" (click)="backClicked()">
+      <strong class="primary">Create Admin</strong>
+    </div>
+    <form class="form col" [formGroup]="selectForm" (ngSubmit)="onSubmit()" *ngIf="!this.id">
+      <small class="note">Note: The user must be signed up as user before creating the admin</small>
+      <br>
+      <div class="formItem col">
+        <label for="uid">Select User</label>
+        <input type="text" id="uid" placeholder="User Id" formControlName="id">
+      </div>
+      <small class="danger" *ngIf="submitted && SelectFormControl.id.errors">Enter a valid username.</small>
+      <small class="danger" *ngIf="error && submitted">{{error}}</small>
+      <button type="submit" class="btn btn-primary center row"><span>Select</span><img *ngIf="loading" class="spin spin-sm" src="/assets/utilities/spinner-white.png" alt=""></button>
+    </form>
+    <br>
+    <br>
+    <div class="infoo col" *ngIf="this.data">
+      <strong><span class="primary">Selected User: </span>{{data.displayName}} | {{data.email}}</strong>
+      <br>
+    </div>
+    <div class="row two" *ngIf="this.data">
+      <div class="card sec">
+        <small><strong class="primary">Roles</strong></small>
+        <div class="roles col">
+          <div class="item row" *ngFor="let i of [1,2,3,4,5]">
+            <input type="checkbox" id="role{{i}}" name="role1" value="role1">
+            <label for="role{{i}}">Role {{i}}</label>
+          </div>
+        </div>
+        <br>
+        <div class="btn btn-primary">Save</div>
+      </div>
+      <div class="card sec">
+
+      </div>
+    </div>
+  </div>
+</div>
