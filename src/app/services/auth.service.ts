@@ -30,8 +30,12 @@ export class AuthService {
       } else {
         this.jwtToken = '';
       }
-      const data = await this.http.post<any>(environment.apiUrl + '/user', user , {headers: {Authorization: `${this.jwtToken}`}}).toPromise();
-      this.currentUserSubject.next(data.data);
+      try {
+        const data = await this.http.post<any>(environment.apiUrl + '/user', user, { headers: { Authorization: `${this.jwtToken}` } }).toPromise();
+        this.currentUserSubject.next(data.data);
+      }catch(err){
+        this.currentUserSubject.next(null);
+      }
     }));
   }
 
@@ -43,7 +47,7 @@ export class AuthService {
       await this.setAuthPersistance();
       const user = await this.afAuth.signInWithEmailAndPassword(email, password);
       const token = await (await this.afAuth.currentUser).getIdToken(true);
-      const data = await this.http.post<any>(environment.apiUrl + '/user', user.user , {headers: {Authorization: `${token}`}}).toPromise();
+      const data = await this.http.post<any>(environment.apiUrl + '/user', user.user, { headers: { Authorization: `${token}` } }).toPromise();
       return data.data;
     } catch (error) {
       await this.afAuth.signOut();

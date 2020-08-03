@@ -1,90 +1,179 @@
 <div class="main-ctr col">
-  <div class="card col">
-    <div class="backRow row">
-      <img src="/assets/utilities/back1.png" class="back" (click)="goBack()" alt="">
-      <strong class="primary">Create and Edit Role</strong>
-    </div>
-    <div class="ct col">
-      <div class="row" *ngIf="!sec">
-        <div class="btn btn-primary" (click)="selected(1)">Create New Role</div>
-        <div class="btn btn-primary" (click)="selected(2)">Edit Role</div>
-      </div>
-      <form class="two col" *ngIf="sec === 1">
-        <div class="formItem col">
-          <label for="name">Role Name</label>
-          <input type="text" class="text" placeholder="role name" *ngIf="!selectedRole">
-          <strong class="dark">{{selectedRole}}</strong>
+    <div class="card col">
+        <div class="backRow row">
+            <img
+                src="/assets/utilities/back1.png"
+                class="back"
+                (click)="goBack()"
+                alt
+            >
+            <strong class="primary">Create and Edit Role</strong>
         </div>
-        <div class="formItem col">
-          <label for="">Permissions</label>
-          <div class="row secs">
-            <div class="card sec col">
-              <div class="formItem col">
-                <label for="">Select Resource</label>
-                <select id="resources" name="cars">
-                  <option value="{{i.value}}" *ngFor="let i of resources">{{i.name}}</option>
-                </select>
-              </div>
-              <div class="formItem">
-                <label for="">Actions</label>
-                <div class="col actns">
-                  <div class="itm chkbox row">
-                    <input type="checkbox" id="c" name="c" value="c">
-                    <label for="c">Create</label>
-                  </div>
-                  <div class="itm chkbox row">
-                    <input type="checkbox" id="r" name="r" value="r">
-                    <label for="r">Read</label>
-                  </div>
-                  <div class="itm chkbox row">
-                    <input type="checkbox" id="u" name="u" value="u">
-                    <label for="u">Update</label>
-                  </div>
-                  <div class="itm chkbox row">
-                    <input type="checkbox" id="d" name="d" value="d">
-                    <label for="d">Delete</label>
-                  </div>
+        <div class="ct col">
+            <div
+                class="row"
+                *ngIf="!sec"
+            >
+                <div
+                    class="btn btn-primary"
+                    (click)="selected(1)"
+                >
+                    Create New Role
                 </div>
-              </div>
-              <div class="formItem">
-                <label for="">Applicable to</label>
-                <div class="col actns">
-                  <div class="itm chkbox row">
-                    <input type="radio" id="own" name="permission" value="own">
-                    <label for="own">Own Account</label>
-                  </div>
-                  <div class="itm chkbox row">
-                    <input type="radio" id="any" name="permission" value="any">
-                    <label for="any">Any Accounts</label>
-                  </div>
+                <div
+                    class="btn btn-primary"
+                    (click)="selected(2)"
+                >
+                    Edit Role
                 </div>
-              </div>
-              <button class="btn btn-outline">Add</button>
             </div>
-
-            <div class="card sec">
-              <strong class="primary">Selected permissions</strong>
-              <div class="pems col">
-                <div class="pem row" *ngFor="let i of [1,2,3,4]">
-                  <small class="name f1">Course</small>
-                  <small class="ps f1">C R U D</small>
-                  <small class="who f1">Own</small>
-                  <img src="/assets/utilities/close.png" alt="">
+            <form
+                class="two col"
+                [formGroup]="createRoleForm"
+                *ngIf="sec === 1"
+                (ngSubmit)="createRole()"
+            >
+                <div class="formItem col">
+                    <label for="name">Role Name</label>
+                    <input
+                        type="text"
+                        class="text"
+                        placeholder="Role name"
+                        *ngIf="!selectedRole"
+                        formControlName="name"
+                    >
+                    <strong class="dark">{{selectedRole}}</strong>
                 </div>
-              </div>
-            </div>
-          </div>
-          <br>
-          <button class="btn btn-primary">Create Role</button>
-        </div>
-      </form>
+                <div
+                    class="formItem col"
+                    formGroupName="currentPermission"
+                >
+                    <label for>Permissions</label>
+                    <div class="row secs">
+                        <div class="card sec col">
+                            <div class="formItem col">
+                                <label for>Select Resource</label>
+                                <select
+                                    id="resources"
+                                    formControlName="resource"
+                                >
+                                    <option
+                                        [ngValue]="i"
+                                        *ngFor="let i of resources"
+                                    >
+                                        {{i.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="formItem">
+                                <label for>Actions</label>
+                                <div class="col actns">
+                                    <div
+                                        class="itm chkbox row"
+                                        formArrayName="actions"
+                                        *ngFor="let action of actionsFormArray.controls; let i = index"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            [formControlName]="i"
+                                        >
+                                        <label for="{{actionsData[i].name}}">{{ actionsData[i].name }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formItem">
+                                <label for>Applicable to</label>
+                                <div class="col actns">
+                                    <div class="itm chkbox row">
+                                        <input
+                                            type="radio"
+                                            id="own"
+                                            formControlName="permissionType"
+                                            value="own"
+                                        >
+                                        <label for="own">Own Account</label>
+                                    </div>
+                                    <div class="itm chkbox row">
+                                        <input
+                                            type="radio"
+                                            id="any"
+                                            formControlName="permissionType"
+                                            value="any"
+                                        >
+                                        <label for="any">Any Accounts</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="btn btn-outline"
+                                (click)="addPermission()"
+                                [disabled]="createRoleForm.get('currentPermission').untouched || createRoleForm.get('currentPermission').invalid"
+                                [ngClass]="{'btn-disabled': createRoleForm.get('currentPermission').untouched || createRoleForm.get('currentPermission').invalid}"
+                            >
+                                Add
+                            </button>
+                        </div>
 
-      <div class="three col" *ngIf="sec === 2">
-        <strong class="primary">Select Role to Edit</strong>
-        <div class="roless row">
-          <div class="rolee btn btn-outline" *ngFor="let i of [1,2,3,4,5]" (click)="selectRole(i)">SUPER_ADMIN</div>
+
+
+
+
+
+
+                        <div class="card sec">
+                            <strong class="primary">Selected permissions</strong>
+                            <div class="pems col">
+                                <div
+                                    class="pem row"
+                                    *ngFor="let permission of permissionsArray;let i = index;"
+                                >
+                                    <small class="name f1">{{permission.resource.name}}</small>
+                                    <small class="ps f1">
+                                        {{ getActionShortCut(permission.actions) }}
+                                    </small>
+                                    <small class="who f1">{{ permission.permissionType }}</small>
+                                    <img
+                                        src="/assets/utilities/close.png"
+                                        alt
+                                        (click)="removePermission(i)"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                        [disabled]="createRoleForm.untouched || (createRoleForm.touched && (createRoleForm.get('name').invalid || permissionsControl.length < 1))"
+                        [ngClass]="{'btn-disabled': createRoleForm.untouched || (createRoleForm.touched && (createRoleForm.get('name').invalid || permissionsControl.length < 1))}"
+                    >
+                        Create Role {{permissionsControl.length}}
+                    </button>
+                </div>
+            </form>
+
+
+
+
+
+
+
+            <div
+                class="three col"
+                *ngIf="sec === 2"
+            >
+                <strong class="primary">Select Role to Edit</strong>
+                <div class="roless row">
+                    <div
+                        class="rolee btn btn-outline"
+                        *ngFor="let role of roles"
+                        (click)="selectRole(role)"
+                    >
+                        {{ role.name }}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
