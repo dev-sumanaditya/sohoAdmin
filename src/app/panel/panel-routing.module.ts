@@ -12,6 +12,7 @@ const routes: Routes = [
     {path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)},
     {path: 'website-settings', loadChildren: () => import('./pages/website/website.module').then(m => m.WebsiteModule)},
     {path: 'courses', loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesModule)},
+    {path: 'payments', loadChildren: () => import('./pages/payments/payments.module').then(m => m.PaymentsModule)},
     {path: '', redirectTo: 'dashboard'}
   ]}
 ];

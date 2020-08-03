@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       name: 'Course',
       value: 'course'
     },
-  ]
+  ];
 
   public roles = null;
 
