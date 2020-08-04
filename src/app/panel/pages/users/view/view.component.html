@@ -1,0 +1,38 @@
+<div class="main-ctr col">
+  <div class="card col" *ngIf="loaded">
+    <div class="backRow row">
+      <img src="/assets/utilities/back1.png" class="back" alt="" (click)="back()">
+      <strong class="primary">User</strong>
+    </div>
+    <div class="ct row" >
+      <div class="image">
+        <img src="{{user.photoURL}}" alt="">
+      </div>
+      <div class="cnt col">
+        <h2 class="primary">{{user.displayName}}</h2>
+        <h3 class="dark">{{user.email}}</h3>
+        <br>
+        <small>ID : {{user.id}}</small>
+      </div>
+    </div>
+    <div class="two col">
+      <strong class="dark">Email Verified: {{user.emailVerified}}</strong>
+      <strong class="dark">Phone Number: {{user.phoneNumber}}</strong>
+      <strong class="dark">UID: {{user.uid}}</strong>
+      <strong class="dark">Last Updated: {{user.updatedAt}}</strong>
+      <strong class="dark">Created At: {{user.createdAt}}</strong>
+    </div>
+    <div class="three row">
+      <div class="btn btn-outline">Block User</div>
+      <div class="btn btn-outline">Update User</div>
+      <div class="btn btn-primary" style="margin-left: 30px;" (click)="copy()">Copy User ID</div>
+    </div>
+    <div class="danger col">
+      <strong class="danger">Danger Zone</strong>
+      <br>
+      <div class="row">
+        <div class="btn btn-danger">Delete User</div>
+      </div>
+    </div>
+  </div>
+</div>

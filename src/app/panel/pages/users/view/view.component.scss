@@ -1,0 +1,41 @@
+.ct {
+  margin-top: 40px;
+  .image {
+    margin-right: 20px;
+    img {
+      height: 100px;
+      min-height: 100px;
+      min-width: 100px;
+      width: 100px;
+      border-radius: 50%;
+      background-color: #eee;
+      margin-right: 20px;
+    }
+  }
+  .cnt {
+    justify-content: center;
+    h2 {
+      margin: 0;
+    }
+    h3 {
+      margin: 0;
+    }
+  }
+}
+
+.two {
+  margin-top: 40px;
+  strong {
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+}
+.three {
+  margin-top: 40px;
+  .btn {
+    margin-right: 10px;
+  }
+}
+.danger {
+  margin-top: 40px;
+}

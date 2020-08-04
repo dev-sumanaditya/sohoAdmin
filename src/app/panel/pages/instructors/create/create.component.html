@@ -23,25 +23,25 @@
       <small><strong class="primary">Personal information</strong></small>
       <br>
       <div class="col row1">
-        <h4 class="name dark">{{selectedUser.displayName}}</h4>
+        <h2 class="name dark">{{selectedUser.displayName}}</h2>
         <h4 class="email dark">{{selectedUser.email}}</h4>
       </div>
       <div class="row row1">
         <div class="form-item col">
           <label for="phone">Phone number</label>
-          <input type="text" formControlName="phone">
+          <input type="text" formControlName="phoneNumber">
         </div>
         <div class="form-item col">
         </div>
       </div>
       <div class="row row1">
         <div class="form-item col">
-          <label for="phone">Area of expertise</label>
-          <input type="text" formControlName="expertise">
+          <label for="phone">Area of expertise (Max 140 chars)</label>
+          <input type="text" formControlName="areaOfExpertise">
         </div>
         <div class="form-item col">
           <label for="email">Maximum number of students</label>
-          <input type="text" formControlName="maxStudents">
+          <input type="number" formControlName="maxNoOfStudents">
         </div>
       </div>
       <br>
@@ -50,11 +50,11 @@
           <small for="day" class="primary"><strong>Availability</strong></small>
           <br>
           <div class="row">
-            <input type="checkbox" name="weekdays" id="" value="weekdays" formControlName="weekdays">
+            <input type="checkbox" name="weekday" id="" value="weekday" formControlName="weekday">
             <small><strong>Weekdays</strong></small>
           </div>
           <div class="row">
-            <input type="checkbox" name="weekdays" id="" value="weekdays" formControlName="weekend">
+            <input type="checkbox" name="weekdays" id="" value="weekday" formControlName="weekend">
             <small><strong>Weekends</strong></small>
           </div>
         </div>
@@ -80,21 +80,21 @@
       <div class="row row1">
         <div class="form-item col">
           <label for="phone">Linkedin profile</label>
-          <input type="text" formControlName="linkedin">
+          <input type="text" formControlName="linkedinProfile">
         </div>
         <div class="form-item col">
           <label for="email">Facebook profile</label>
-          <input type="text" formControlName="facebook">
+          <input type="text" formControlName="fbProfile">
         </div>
       </div>
       <div class="row row1">
         <div class="form-item col">
           <label for="phone">Instagram profile</label>
-          <input type="text" formControlName="instagram">
+          <input type="text" formControlName="instaProfile">
         </div>
         <div class="form-item col">
           <label for="email">Twitter profile</label>
-          <input type="text" formControlName="twitter">
+          <input type="text" formControlName="twitterProfile">
         </div>
       </div>
       <br>

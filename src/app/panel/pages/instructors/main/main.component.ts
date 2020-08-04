@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main',
@@ -12,14 +13,21 @@ export class MainComponent implements OnInit {
 
   public head = [
     {headerName: 'ID', field: 'id', sortable: true, filter: true, checkboxSelection: true},
-    {headerName: 'NAME', field: 'name', sortable: true, filter: true },
-    {headerName: 'EMAIL', field: 'email', sortable: true, filter: true},
-    {headerName: 'REGISTERED DATE', field: 'date', sortable: true, filter: true},
-    {headerName: 'EMAIL VERIFIED', field: 'emailVerified', sortable: true, filter: true},
-    {headerName: 'USER ID', field: 'uid', sortable: true, filter: true}
+    {headerName: 'NAME', field: 'user.displayName', sortable: true, filter: true },
+    {headerName: 'EMAIL', valueGetter: (params) => params.data.user.email, sortable: true, filter: true},
+    {headerName: 'EXPERTISE', field: 'areaOfExpertise', sortable: true, filter: true},
+    {headerName: 'CREATED AT', field: 'createdAt', sortable: true, filter: true},
+    {headerName: 'MAX STUDENTS', field: 'maxNoOfStudents', sortable: true, filter: true},
+    {headerName: 'TIMING', field: 'timing', sortable: true, filter: true},
+    {headerName: 'APPROVED', field: 'approved', sortable: true, filter: true},
+    {headerName: 'CREATED BY', field: 'createdBy.email', sortable: true, filter: true},
+    {headerName: 'LINKEDIN', field: 'linkedinProfile', sortable: true, filter: true},
+    {headerName: 'TWITTER', field: 'twitterProfile', sortable: true, filter: true},
+    {headerName: 'FACEBOOK', field: 'fbProfile', sortable: true, filter: true},
+    {headerName: 'INSTAGRAM', field: 'instaProfile', sortable: true, filter: true},
   ];
 
-  public url = 'http://localhost:3000/users';
+  public url = environment.apiUrl + '/instructor';
 
   constructor(private router: Router) { }
 
@@ -27,13 +35,13 @@ export class MainComponent implements OnInit {
   }
 
   rowSelected(event) {
-    console.log(event);
     this.selectedUser = event;
   }
 
   openUser() {
     if (this.selectedUser) {
-      this.router.navigate(['/instructors', 'info', this.selectedUser.uid]);
+      console.log(this.selectedUser.id)
+      this.router.navigate(['instructors', 'info', this.selectedUser.id]);
     }
   }
 }

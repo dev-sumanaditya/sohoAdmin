@@ -12,7 +12,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [MainComponent, InfoComponent, ApplicationsComponent, CreateComponent, ApplicationViewerComponent],
+  declarations: [
+    MainComponent,
+    InfoComponent,
+    ApplicationsComponent,
+    CreateComponent,
+    ApplicationViewerComponent
+  ],
   imports: [
     CommonModule,
     InstructorsRoutingModule,

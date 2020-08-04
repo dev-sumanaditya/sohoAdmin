@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -12,6 +13,7 @@ import { environment } from 'src/environments/environment';
 export class CreateComponent implements OnInit {
 
   public selectedUser = null;
+  public selectedUserId = null;
   public userSelectForm: FormGroup;
   public error = '';
   public submitted = false;
@@ -25,7 +27,8 @@ export class CreateComponent implements OnInit {
   constructor(
     private location: Location,
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,28 +40,30 @@ export class CreateComponent implements OnInit {
     });
 
     this.createInstructorForm = this.fb.group({
-      phone: [
+      phoneNumber: [
         '',
         [
           Validators.required,
-          Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'),
+          Validators.minLength(7),
+          Validators.maxLength(15)
         ]
       ],
-      expertise: [
+      areaOfExpertise: [
         '',
         [
           Validators.required,
-          Validators.maxLength(60)
+          Validators.maxLength(140)
         ]
       ],
-      maxStudents: [
-        '',
+      maxNoOfStudents: [
+        null,
         [
           Validators.required,
-          Validators.pattern('^[1-9][0-9]*0$')
+          Validators.min(1),
+          Validators.max(99999)
         ]
       ],
-      weekdays: [
+      weekday: [
         false
       ],
       weekend: [
@@ -73,27 +78,26 @@ export class CreateComponent implements OnInit {
       evening: [
         false
       ],
-      linkedin: [
-        '',
+      linkedinProfile: [
+        null,
         [
           Validators.minLength(10),
-          Validators.pattern('^https:\\/\\/[a-z]{2,3}\\.linkedin\\.com\\/.*$')
         ]
       ],
-      facebook: [
-        '',
+      fbProfile: [
+        null,
         [
           Validators.minLength(10)
         ]
       ],
-      twitter: [
-        '',
+      twitterProfile: [
+        null,
         [
           Validators.minLength(10)
         ]
       ],
-      instagram: [
-        '',
+      instaProfile: [
+        null,
         [
           Validators.minLength(10)
         ]
@@ -116,6 +120,7 @@ export class CreateComponent implements OnInit {
       this.http.get<any>(environment.apiUrl + '/user/' + this.userSelectForm.value.userid).subscribe(
         ({data}) => {
           this.selectedUser = data;
+          this.selectedUserId = data.id;
           this.loading = false;
         },
         err => {
@@ -127,7 +132,22 @@ export class CreateComponent implements OnInit {
   }
 
   createInstructor() {
-    console.log(this.createInstructorForm.value);
+    if (this.createInstructorForm.invalid) {
+      alert('Invalid');
+      return;
+    }
+    const data = this.createInstructorForm.value;
+    data.availability = ['weekday', 'weekend'].filter(day => !!data[day]).join(',');
+    data.timing = ['morning', 'afternoon', 'evening'].filter(day => !!data[day]).join(',');
+    data.userId = this.selectedUserId;
+    this.http.post<any>(environment.apiUrl + '/instructor/create', data).subscribe(
+      dat => {
+        console.log(dat);
+        this.router.navigate(['/instructors']);
+      }, err => {
+        console.log(err);
+      }
+    );
   }
 
 }
