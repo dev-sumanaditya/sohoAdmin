@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ClipboardService } from 'ngx-clipboard';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -20,8 +22,12 @@ export class MainComponent implements OnInit {
   ];
 
   public url = environment.apiUrl + '/user';
+  public selectedUser = null;
 
-  constructor() { }
+  constructor(
+    private clipboardService: ClipboardService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -30,4 +36,20 @@ export class MainComponent implements OnInit {
     return data.roles.map(role => role.name).join(',');
   }
 
+  rowSelected(event) {
+    this.selectedUser = event;
+  }
+
+  copyId() {
+    if (this.selectedUser) {
+      this.clipboardService.copyFromContent(this.selectedUser.id);
+      alert('successfully copied : ' + this.selectedUser.id);
+    }
+  }
+
+  viewUser() {
+    if (this.selectedUser) {
+      this.router.navigate(['/users', 'view', this.selectedUser.id]);
+    }
+  }
 }

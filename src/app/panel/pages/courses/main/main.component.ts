@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
     {headerName: 'LAST UPDATED', field: 'updatedAt', sortable: true, filter: true}
   ];
 
-  public url = environment.apiUrl + '/user';
+  public url = environment.apiUrl + '';
   public selectedUser;
 
   constructor() { }

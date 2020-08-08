@@ -26,6 +26,12 @@
                 >
                     Edit Role
                 </div>
+                <div
+                    class="btn btn-primary"
+                    (click)="selected(3)"
+                >
+                    Create New Resource
+                </div>
             </div>
             <form
                 class="two col"
@@ -59,9 +65,9 @@
                                 >
                                     <option
                                         [ngValue]="i"
-                                        *ngFor="let i of resources"
+                                        *ngFor="let i of resourcesDB"
                                     >
-                                        {{i.name}}
+                                        {{i.name | titlecase}}
                                     </option>
                                 </select>
                             </div>
@@ -73,15 +79,40 @@
                                         formArrayName="actions"
                                         *ngFor="let action of actionsFormArray.controls; let i = index"
                                     >
+                                    <div [formGroupName]="i">
                                         <input
                                             type="checkbox"
-                                            [formControlName]="i"
+                                            formControlName="action"
                                         >
-                                        <label for="{{actionsData[i].name}}">{{ actionsData[i].name }}</label>
+                                        <label class="actn-lbl" for="{{actionsData[i].name}}">{{ actionsData[i].name }}</label>
+                                        <div class="formItem">
+                                          <!-- <label for>Applicable to</label> -->
+                                          <div class="row actns">
+                                              <div class="itm chkbox row">
+                                                  <input
+                                                      type="radio"
+                                                      id="own"
+                                                      formControlName="permissionType"
+                                                      value="own"
+                                                  >
+                                                  <label for="own">Own Account</label>
+                                              </div>
+                                              <div class="itm chkbox row">
+                                                  <input
+                                                      type="radio"
+                                                      id="any"
+                                                      formControlName="permissionType"
+                                                      value="any"
+                                                  >
+                                                  <label for="any">Any Accounts</label>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="formItem">
+                            <!-- <div class="formItem">
                                 <label for>Applicable to</label>
                                 <div class="col actns">
                                     <div class="itm chkbox row">
@@ -103,7 +134,8 @@
                                         <label for="any">Any Accounts</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+
                             <button
                                 class="btn btn-outline"
                                 (click)="addPermission()"
@@ -112,6 +144,13 @@
                             >
                                 Add
                             </button>
+
+                            <!-- <button
+                                class="btn btn-outline"
+                                (click)="addPermission()"
+                            >
+                                Add
+                            </button> -->
                         </div>
 
 
@@ -140,6 +179,27 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- <div class="card sec">
+                          <strong class="primary">Selected permissions</strong>
+                          <div class="pems col">
+                              <div
+                                  class="pem row"
+                                  *ngFor="let permission of permissionsArray;let i = index;"
+                              >
+                                  <small class="name f1">{{permission.resource.name}}</small>
+                                  <small class="ps f1">
+                                      {{ getActionShortCut(permission.actions) }}
+                                  </small>
+                                  <small class="who f1">{{ permission.permissionType }}</small>
+                                  <img
+                                      src="/assets/utilities/close.png"
+                                      alt
+                                      (click)="removePermission(i)"
+                                  >
+                              </div>
+                          </div>
+                      </div> -->
                     </div>
                     <br>
                     <button
@@ -174,6 +234,43 @@
                     </div>
                 </div>
             </div>
+
+
+            <form
+                class="two col"
+                [formGroup]="createResourceForm"
+                *ngIf="sec === 3"
+                (ngSubmit)="createResouce()"
+            >
+                <div class="formItem col">
+                    <label for="name">Resource Name</label>
+                    <input
+                        type="text"
+                        class="text"
+                        placeholder="Resource name"
+                        formControlName="name"
+                    >
+                </div>
+
+                    <button
+                        style="width: fit-content;"
+                        class="btn btn-primary"
+                        type="submit"
+                        [disabled]="createResourceForm.untouched || (createResourceForm.touched && createResourceForm.get('name').invalid)"
+                        [ngClass]="{'btn-disabled': createResourceForm.untouched || (createResourceForm.touched && createResourceForm.get('name').invalid)}"
+                    >
+                        Create Resource
+                    </button>
+                    <br>
+                    <div class="formItem">
+                      <label for>Resources</label>
+                      <div class="col actns">
+                          <div class="itm chkbox row" *ngFor="let resource of resourcesDB">
+                              <label>{{ resource.name | titlecase }}</label>
+                          </div>
+                      </div>
+                  </div>
+            </form>
         </div>
     </div>
 </div>

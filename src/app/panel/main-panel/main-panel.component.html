@@ -24,3 +24,7 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+<div class="col center" *ngIf="!userData">
+  <img src="/assets/utilities/spinner.png" class="spin" alt="">
+</div>

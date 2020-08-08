@@ -1,15 +1,16 @@
 <div class="main-ctr col">
-  <div class="card col info">
+  <div class="card col info" *ngIf="data">
     <div class="backRow row">
       <img src="/assets/utilities/back1.png" class="back" (click)="goBack()" alt="">
       <strong class="primary">Instructor Information</strong>
     </div>
     <div class="row toprow">
-      <img src="/assets/images/demo/profile.jpg" alt="" class="mainImg">
+      <img [src]="data.user.photoURL" alt="" class="mainImg">
       <div class="col rit">
-        <h3>John Doe</h3>
-        <h4>johndoe@gmail.com</h4>
-        <strong class="primary">+91 9112334567</strong>
+        <h3>{{data.user.displayName}}</h3>
+        <h4>{{data.user.email}}</h4>
+        <strong class="primary">{{data.user.phoneNumber}}</strong>
+        <small class="dark">{{data.user.id}}</small>
         <div class="row tags">
           <div class="tag">Verified</div>
         </div>
@@ -17,26 +18,29 @@
     </div>
     <div class="section col">
       <small class="hd primary">Basic info</small>
-      <strong class="dark">YouTuber, Author, Entrepreneur</strong>
-      <p>I’m an author, YouTuber, and speaker who is passionate about helping students succeed. Most of my work today is done at College Info Geek – a site I created in 2010 in order to share my experiments in becoming a more effective student. Today, College Info Geek is one of the world’s largest and best-loved resources for students, and includes a blog, podcast, and a YouTube channel with over 1 million subscribers.</p>
+      <strong class="dark">{{data.areaOfExpertise}}</strong>
+      <p *ngIf="data.about">About : {{data.about}}</p>
     </div>
     <div class="section col">
       <small class="hd primary">Activity</small>
-      <strong class="tp">12 Courses</strong>
-      <strong class="tp">2240 Learners</strong>
+      <strong class="tp">0 Courses</strong>
+      <strong class="tp">0 Learners</strong>
     </div>
     <div class="section col">
       <small class="hd primary">Preferences</small>
-      <strong class="tp">Maximum students per course: 200</strong>
-      <strong class="tp">Working Days: Weekdays + Weekend</strong>
-      <strong class="tp">Timing: Morning + Evening</strong>
+      <label class="tp">Maximum students per course: {{data.maxNoOfStudents}}</label>
+      <label class="tp">Working Days: {{data.availability}}</label>
+      <label class="tp">Timing: {{data.timing}}</label>
+      <br>
+      <label class="tp">Approved By: {{data.createdBy.email}}</label>
+      <label class="tp">Created On : {{data.createdAt}}</label>
     </div>
     <div class="section col">
       <small class="hd primary">Social Accounts</small>
-      <strong class="tp tpsm"><span class="primary">Linkedin:</span> https://www.linkedin.com/in/johndoe</strong>
-      <strong class="tp tpsm"><span class="primary">Facebook:</span> https://www.facebook.com/johndoe</strong>
-      <strong class="tp tpsm"><span class="primary">Instagram:</span> https://www.instagram.com/johndoe</strong>
-      <strong class="tp tpsm"><span class="primary">Twitter:</span> https://www.twitter.com/johndoe</strong>
+      <strong class="tp tpsm"><span class="primary" *ngIf="data.linkedinProfile">Linkedin:</span> {{data.linkedinProfile}}</strong>
+      <strong class="tp tpsm"><span class="primary" *ngIf="data.fbProfile">Facebook:</span> {{data.fbProfile}}</strong>
+      <strong class="tp tpsm"><span class="primary" *ngIf="data.instaProfile">Instagram:</span> {{data.instaProfile}}</strong>
+      <strong class="tp tpsm"><span class="primary" *ngIf="data.twitterProfile">Twitter:</span> {{data.twitterProfile}}</strong>
     </div>
 
   </div>
