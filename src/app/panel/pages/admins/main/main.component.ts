@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
     {headerName: 'LAST UPDATED', field: 'updatedAt', sortable: true, filter: true}
   ];
 
-  public url = environment.apiUrl + '/user';
+  public url = environment.apiUrl + '/user?role=SUPER_ADMIN,ADMIN';
 
   constructor(private router: Router) { }
 

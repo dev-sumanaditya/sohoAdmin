@@ -25,10 +25,10 @@
     <div class="row hd">
       <strong class="primary">Blogs (Only 4)</strong>
       <div class="flex-grow"></div>
-      <a class="btn btn-primary">Create New Blog</a>
+      <a class="btn btn-primary" routerLink="/website-settings/blog/new">Create New Blog</a>
     </div>
     <div class="items row">
-      <a routerLink="/blog/{{i}}" class="item" *ngFor="let i of [1,1,1,1]">
+      <a routerLink="/website-settings/blog/{{i}}" class="item" *ngFor="let i of [1,1,1,1]">
         <div class="img">
           <div class="image" [style.background]="'url(/assets/images/demo/blog-bg.jpg)'"></div>
         </div>

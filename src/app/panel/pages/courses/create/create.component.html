@@ -1,0 +1,110 @@
+<div class="main-ctr col">
+  <div class="card col">
+    <div class="backRow row">
+      <img src="/assets/utilities/back1.png" alt="" class="back" (click)="back()">
+      <strong class="primary">Create new course</strong>
+    </div>
+    <div class="formItem col" *ngIf="!instructor">
+      <label for="" class="dark">Select Instructor</label>
+      <input type="text" placeholder="Instructor ID" [(ngModel)]="instructorID">
+      <button class="btn btn-primary" (click)="selectInstructor()">Select Instructor</button>
+    </div>
+    <div class="cr8" *ngIf="instructor">
+      <div class="col" style="margin-top: 30px;">
+        <label for="" class="primary" style="font-weight: 600; margin-bottom: 10px;">On behalf of Instructor</label>
+        <strong class="dark">{{instructor.user.displayName}}</strong>
+        <strong class="dark">{{instructor.user.email}}</strong>
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">Course Title</label>
+        <input type="text" placeholder="Course Title">
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">Sub Title</label>
+        <input type="text" placeholder="Sub Title">
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">Short Description</label>
+        <textarea name="" placeholder="Short description of course" id="" cols="30" rows="7"></textarea>
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">Lesson Plan</label>
+        <form [formGroup]="lessonForm" (ngSubmit)="onSubmit()" class="row lssn">
+          <input type="text" [class.formError]="LessonFormControl.lessonName.errors && lessonSubmitted" formControlName="lessonName" class="flex-grow" placeholder="Lesson name max-60" maxlength="60">
+          <input type="number" [class.formError]="LessonFormControl.lessonDuration.errors && lessonSubmitted" formControlName="lessonDuration" placeholder="Duration in mins">
+          <button class="btn btn-primary" type="Submit">Add</button>
+        </form>
+        <small class="danger" *ngIf="LessonFormControl.lessonDuration.errors && lessonSubmitted">Only multiples of 10 is allowed. Max 360 mins | Min 10 mins</small>
+        <div class="lessons col" *ngIf="lessons.length >= 1">
+          <div class="lesson row" *ngFor="let item of lessons; let i = index">
+            <h4>{{i}}</h4>
+            <div class="flex-grow">{{item.name}}</div>
+            <div class="duration">{{item.duration}}</div>
+            <img (click)="removeLesson(item.id)" src="/assets/icons/utility/delete2.png" alt="">
+          </div>
+        </div>
+        <div class="lessons" *ngIf="lessons.length === 0">
+          <small class="danger">Add at least one lesson to continue</small>
+        </div>
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">Price</label>
+        <input type="number" placeholder="Price in rupees">
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">Start Date</label>
+        <my-date-picker name="mydate" [options]="myDatePickerOptions"
+        [(ngModel)]="model" required></my-date-picker>
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">About Course</label>
+        <quill-editor
+          [styles]="editorStyle"
+          (onEditorChanged)="changedEditor($event)"
+          [(ngModel)]="content"
+          trackChanges="all"
+          [modules]="modules"
+          placeholder="A detailed explation about your course in not more than 1500 words"
+          ></quill-editor>
+      </div>
+      <div class="formItem col im3">
+        <label for="" class="primary">Cover Image</label>
+        <div class="image col">
+          <div class="img col" [style.background]="'url()'">
+            <div class="not">
+              <div class="btn btn-primary btn-sm" (click)="coverImage.click()">Upload Image</div>
+              <input type="file" style="display: none;" #coverImage (change)="fileChangeEvent($event)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="formItem col">
+        <label for="" class="primary">Select Category</label>
+        <select name="cars" id="cars">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </div>
+      <br><br><br>
+      <div class="btn btn-primary">Publish Course</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="imageChangedEvent">
+  <div class="cont col">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="16 / 9"
+      format="png"
+      class="cropper"
+      (imageCropped)="imageCropped($event)"
+      (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="btn btn-primary">Upload Image</div>
+    <div class="btn white" (click)="imageChangedEvent = ''">Cancel</div>
+  </div>
+</div>

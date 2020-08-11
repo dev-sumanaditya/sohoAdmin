@@ -1,0 +1,49 @@
+.top {
+  margin-top: 20px;
+  .f1 {
+    padding: 20px;
+  }
+  .image {
+    padding-top: 40%;
+    position: relative;
+    margin-bottom: 10px;
+    .img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-size: cover !important;
+      background-position: center;
+    }
+  }
+
+  .cont {
+    padding: 20px;
+    h2 {
+      margin: 0;
+    }
+    input {
+      padding: 6px 12px;
+      font-size: 16px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.quill {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.modal {
+  .cont {
+    align-items: center;
+    justify-content: center;
+    .cropper {
+      max-height: 70%;
+      max-width: 70%;
+    }
+  }
+}

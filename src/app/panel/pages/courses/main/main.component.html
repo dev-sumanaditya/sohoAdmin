@@ -3,8 +3,8 @@
     <div class="backRow row">
       <strong class="primary">Courses</strong>
       <div class="flex-grow"></div>
-      <div class="btn btn-outline btn-sm">Create Course</div>
-      <div class="btn btn-primary btn-sm">View Course</div>
+      <a class="btn btn-outline btn-sm" routerLink="/courses/create">Create Course</a>
+      <div class="btn btn-primary btn-sm" (click)="viewCourse()" *ngIf="selectedUser">View Course</div>
     </div>
     <div class="grid col">
       <app-ag-grid [header]="head" [url]="url" (rowSelected)="rowSelected($event)"></app-ag-grid>

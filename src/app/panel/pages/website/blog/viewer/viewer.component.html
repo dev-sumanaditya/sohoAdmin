@@ -1,0 +1,25 @@
+<div class="main-ctr col">
+  <div class="card col">
+    <div class="backRow row">
+      <img src="/assets/utilities/back1.png" alt="" class="back" (click)="back()">
+      <strong class="primary">Blog</strong>
+    </div>
+    <div class="viewer col">
+      <div class="row">
+        <div class="f1">
+          <div class="image">
+            <div class="img" [style.background]="'url(/assets/images/demo/blog-bg.jpg)'"></div>
+          </div>
+        </div>
+        <div class="f1 btns col">
+          <a class="btn btn-primary" routerLink="/website-settings/blog/edit/1">Edit this Blog</a>
+          <div class="btn btn-danger" (click)="deleteBlog()">Delete this blog</div>
+        </div>
+      </div>
+      <h1 class="dark">Importance of art in work life balance and growth of mind</h1>
+      <div class="content">
+        html content
+      </div>
+    </div>
+  </div>
+</div>

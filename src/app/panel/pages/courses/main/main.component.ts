@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -23,15 +24,23 @@ export class MainComponent implements OnInit {
   ];
 
   public url = environment.apiUrl + '';
-  public selectedUser;
+  public selectedUser = {id: 123}; // change this later
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   rowSelected(event) {
     this.selectedUser = event;
+  }
+
+  viewCourse() {
+    if (this.selectedUser) {
+      this.router.navigate(['courses', 'view', this.selectedUser.id]);
+    }
   }
 
 }

@@ -24,9 +24,7 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.http.get<any>(environment.apiUrl + '/instructor/' + params.id).subscribe(
         data => {
-          console.log(params.id)
           this.data = data.data;
-          console.log(data);
         }
       );
     });

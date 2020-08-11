@@ -13,6 +13,7 @@ import { ErrorInterceptor } from './helpers/helpers/error.interceptor';
 import { AuthGuard } from './helpers/helpers/auth.guard';
 import { AntiAuthGuard } from './helpers/helpers/antiauth.guard';
 import { AuthService } from './services/auth.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

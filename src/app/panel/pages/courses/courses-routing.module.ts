@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
+import { CreateComponent } from './create/create.component';
+import { ViewComponent } from './view/view.component';
 
 
 const routes: Routes = [
+  {path: 'view/:id', component: ViewComponent},
+  {path: 'create', component: CreateComponent},
   {path: '', component: MainComponent}
 ];
 
