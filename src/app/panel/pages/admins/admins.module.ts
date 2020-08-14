@@ -6,7 +6,7 @@ import { MainComponent } from './main/main.component';
 import { SharedModule } from '../shared/shared.module';
 import { ViewComponent } from './view/view.component';
 import { CreateComponent } from './create/create.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AdminsRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class AdminsModule { }

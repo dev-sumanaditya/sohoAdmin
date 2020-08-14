@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,65 +14,43 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewComponent implements OnInit {
 
-  modules = {};
-  content = '';
+  public title = '';
 
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
+  public loading = false;
+  public error = '';
 
-  public editorStyle = {
-    height: '500px',
-    backgroundColor: '#fff',
-  };
-
-  public title;
 
   constructor(
     private location: Location,
-    private toastr: ToastrService
-  ) {
-    this.modules = {
-      toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ header: 1 }, { header: 2 }],
-        ['blockquote', 'code-block'],
-        [{ list: 'bullet' }, { list: 'ordered'}],
-        [{ script: 'sub' }, { script: 'super' }],
-        [{ indent: '-1' }, { indent: '+1' }],
-        [{ header: [1, 2, 3, false] }],
-        [{ color: [] }, { background: [] }],
-        [{ align: [] }],
-        ['clean'],
-        ['link', 'image', 'video'],
-      ]
-    };
-  }
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
   }
 
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-  imageCropped(event: ImageCroppedEvent) {
-      this.croppedImage = event.base64;
-  }
-  loadImageFailed() {
-    // show message
-  }
-
-  uploadImage() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-    const image = this.croppedImage;
-    this.imageChangedEvent = '';
-  }
-
-  changedEditor($event) {
-    // console.log($event);
-  }
-
   back() {
     this.location.back();
+  }
+
+  createBlog() {
+    console.log(this.title);
+    if (this.title.length > 0) {
+      this.loading = true;
+      this.http.post<any>(environment.apiUrl + '/blog', {title: this.title}).subscribe(
+        data => {
+          console.log(data);
+          this.loading = false;
+          this.router.navigate(['/website-settings', 'blog', 'edit', data.data.id]);
+        },
+        error => {
+          this.loading = false;
+          this.error = error;
+        }
+      );
+    } else {
+      this.error = 'Please enter a valid input';
+    }
   }
 
 }

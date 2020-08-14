@@ -1,25 +1,6 @@
 <div class="main-ctr col">
   <div class="card col">
     <strong class="primary">Website Settings</strong>
-    <br>
-    <div class="row split">
-      <div class="item col">
-        <small class="primary"><strong>Course Categories</strong></small>
-        <div class="items row">
-          <div class="listItem btn btn-outline row" *ngFor="let i of [1,1,1,1,1,1,1,1,1,1]">
-            <span>Finance</span>
-          </div>
-        </div>
-      </div>
-      <div class="item col">
-        <small class="primary"><strong>Active Coupons</strong></small>
-        <div class="items row">
-          <div class="listItem btn btn-outline row" *ngFor="let i of [1,1,1,1,1,1,1,1]">
-            <span>40% off</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="card blog col">
     <div class="row hd">
@@ -28,14 +9,13 @@
       <a class="btn btn-primary" routerLink="/website-settings/blog/new">Create New Blog</a>
     </div>
     <div class="items row">
-      <a routerLink="/website-settings/blog/{{i}}" class="item" *ngFor="let i of [1,1,1,1]">
+      <a routerLink="/website-settings/blog/edit/{{i.id}}" class="item" *ngFor="let i of blogs">
         <div class="img">
-          <div class="image" [style.background]="'url(/assets/images/demo/blog-bg.jpg)'"></div>
+          <div class="image" [style.background]="'url('+ i.image +')'"></div>
         </div>
         <div class="cont col">
-          <h3 class="title dark">The importance of art in work life balance and growth</h3>
-          <span class="text dark">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</span>
-          <small class="time dark">updated 6 days ago</small>
+          <h3 class="title dark">{{i.title}}</h3>
+          <small class="time dark">{{i.updatedAt}}</small>
         </div>
       </a>
     </div>

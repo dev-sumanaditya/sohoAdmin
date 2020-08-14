@@ -1,0 +1,39 @@
+<div class="main-ctr col">
+  <div class="card col">
+    <div class="backRow row">
+      <img src="/assets/utilities/back1.png" alt="" class="back" (click)="back()">
+      <strong class="primary">Course Categories</strong>
+    </div>
+    <br>
+    <h4>Active Categories:</h4>
+    <div class="row categories">
+      <div class="item btn col" *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]" routerLink="/courses/category/edit/1">
+        <small>Category</small>
+      </div>
+    </div>
+    <br><br>
+    <h4>Create new category</h4>
+    <div class="row" *ngIf="!showCreate">
+      <div class="btn btn-primary" (click)="this.showCreate = true">Create New</div>
+    </div>
+    <br>
+    <div class="create col" *ngIf="showCreate">
+      <div class="formItem col">
+        <label for="" class="primary">Name:</label>
+        <input type="text" placeholder="Name of the course">
+      </div>
+      <br>
+      <small class="dark">SelectedFile.name</small>
+      <br>
+      <div class="formItem col">
+        <div class="row"><div class="primary btn btn-outline btn-sm" (click)="icon.click()">Select Icon</div></div>
+        <input type="file" style="display: none;" #icon>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="btn btn-primary">Create</div>
+      </div>
+    </div>
+  </div>
+</div>

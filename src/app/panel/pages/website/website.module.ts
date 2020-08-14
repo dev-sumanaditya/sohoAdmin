@@ -9,7 +9,7 @@ import { MainComponent } from './main/main.component';
   declarations: [MainComponent],
   imports: [
     CommonModule,
-    WebsiteRoutingModule
+    WebsiteRoutingModule,
   ]
 })
 export class WebsiteModule { }

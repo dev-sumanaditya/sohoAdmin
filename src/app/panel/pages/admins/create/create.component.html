@@ -22,17 +22,17 @@
       <br>
     </div>
     <div class="row two" *ngIf="this.data">
-      <div class="card sec">
+      <form  [formGroup]="saveForm" (ngSubmit)="save()" class="card sec">
         <small><strong class="primary">Roles</strong></small>
         <div class="roles col">
-          <div class="item row" *ngFor="let i of [1,2,3,4,5]">
-            <input type="checkbox" id="role{{i}}" name="role1" value="role1">
-            <label for="role{{i}}">Role {{i}}</label>
+          <div class="item row" *ngFor="let i of rolesData; let index = index">
+            <input type="checkbox" [formControl]="rolesControl.at(index)">
+            <label>{{rolesData[index].name}}</label>
           </div>
         </div>
         <br>
-        <div class="btn btn-primary">Save</div>
-      </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
       <div class="card sec">
 
       </div>

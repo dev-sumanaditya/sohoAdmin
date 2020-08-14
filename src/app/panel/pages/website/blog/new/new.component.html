@@ -4,44 +4,11 @@
       <img src="/assets/utilities/back1.png" alt="" class="back" (click)="back()">
       <strong class="primary">Create New Blog</strong>
     </div>
-    <div class="top row">
-      <div class="f1 col">
-        <div class="image">
-          <div class="img" [style.background]="'url('+ croppedImage +')'"></div>
-        </div>
-        <div class="btn btn-primary" (click)="coverImage.click()">Upload Image</div>
-        <input type="file" style="display: none;" (change)="fileChangeEvent($event)" #coverImage>
-      </div>
-      <div class="f2 col cont">
-        <h2>{{title}}</h2>
+    <div class="col select">
+        <label for="" class="dark">Blog Title</label>
         <input type="text" placeholder="Blog title" [(ngModel)]="title" maxlength="80">
-        <button class="btn btn-primary">Publish Blog</button>
-      </div>
+        <small class="danger">{{error}}</small>
+        <button class="btn btn-primary" (click)="createBlog()">Create Blog <img *ngIf="loading" src="/assets/utilities/spinner-white.png" class="spin"></button>
     </div>
-    <div class="quill">
-      <quill-editor
-      [styles]="editorStyle"
-      (onEditorChanged)="changedEditor($event)"
-      [(ngModel)]="content"
-      trackChanges="all"
-      [modules]="modules"
-      placeholder="Start writing a blog..."
-      ></quill-editor>
-    </div>
-  </div>
-</div>
-<div class="modal" *ngIf="imageChangedEvent">
-  <div class="cont col">
-    <image-cropper
-      [imageChangedEvent]="imageChangedEvent"
-      [maintainAspectRatio]="true"
-      [aspectRatio]="10 / 4"
-      format="png"
-      class="cropper"
-      (imageCropped)="imageCropped($event)"
-      (loadImageFailed)="loadImageFailed()"
-    ></image-cropper>
-    <div class="btn btn-primary" (click)="uploadImage()">Upload Image</div>
-    <div class="btn white" (click)="imageChangedEvent = ''">Cancel</div>
   </div>
 </div>

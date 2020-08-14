@@ -2,21 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-viewer',
-  templateUrl: './viewer.component.html',
-  styleUrls: ['./viewer.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class ViewerComponent implements OnInit {
+export class EditComponent implements OnInit {
 
   constructor(
     private location: Location
   ) { }
 
   ngOnInit(): void {
-  }
-
-  deleteBlog() {
-    alert('delete this blog');
   }
 
   back() {

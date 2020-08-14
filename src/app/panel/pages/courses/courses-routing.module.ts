@@ -6,6 +6,7 @@ import { ViewComponent } from './view/view.component';
 
 
 const routes: Routes = [
+  {path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)},
   {path: 'view/:id', component: ViewComponent},
   {path: 'create', component: CreateComponent},
   {path: '', component: MainComponent}

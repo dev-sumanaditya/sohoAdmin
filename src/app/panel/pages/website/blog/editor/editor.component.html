@@ -4,30 +4,43 @@
       <img src="/assets/utilities/back1.png" alt="" class="back" (click)="back()">
       <strong class="primary">Blog Editor</strong>
     </div>
-    <div class="top row">
+    <ng-toggle
+      [value]="blogData.published"
+      [color]="{
+        unchecked: '#939da2',
+        checked: '#0ac775'
+      }"
+      [labels]="{checked: 'Draft', unchecked: 'Published'}"
+      [width]="200"
+    ></ng-toggle>
+    <div class="top col" *ngIf="blogData">
       <div class="f1 col">
         <div class="image">
-          <div class="img" [style.background]="'url(/assets/images/demo/blog-bg.jpg)'"></div>
+          <div class="img" [style.background]="'url('+ blogData.image +')'"></div>
         </div>
         <div class="btn btn-primary" (click)="coverImage.click()">Change Image</div>
-        <input type="file" style="display: none;" (change)="fileChangeEvent($event)" #coverImage>
+        <input type="file" style="display: none;" (change)="fileChangeEvent($event)" #coverImage (click)="coverImage.value = ''">
       </div>
       <div class="f2 col cont">
-        <h2>{{title}}</h2>
-        <input type="text" placeholder="Blog title" [(ngModel)]="title" maxlength="80">
-        <button class="btn btn-primary">Update Blog</button>
+        <label for="">Blog Title:</label>
+        <input type="text" placeholder="Blog title" [(ngModel)]="blogData.title" maxlength="80">
       </div>
     </div>
-    <div class="quill">
+    <div class="quill" *ngIf="blogData">
       <quill-editor
       [styles]="editorStyle"
       (onEditorChanged)="changedEditor($event)"
-      [(ngModel)]="content"
+      [(ngModel)]="blogData.content"
       trackChanges="all"
       [modules]="modules"
       placeholder="A detailed explation about your course in not more than 1500 words"
       ></quill-editor>
     </div>
+    <br>
+    <br>
+    <div class="btn btn-primary" (click)="save()">Save Blog</div><br>
+    <div class="btn btn-outline" (click)="publish()">Publish Blog</div><br>
+    <div class="btn btn-danger" (click)="delete()">Delete this Blog</div>
   </div>
 </div>
 <div class="modal" *ngIf="imageChangedEvent">
@@ -41,7 +54,7 @@
       (imageCropped)="imageCropped($event)"
       (loadImageFailed)="loadImageFailed()"
     ></image-cropper>
-    <div class="btn btn-primary">Upload Image</div>
+    <div class="btn btn-primary" (click)="uploadImage()">Upload Image</div>
     <div class="btn white" (click)="imageChangedEvent = ''">Cancel</div>
   </div>
 </div>
