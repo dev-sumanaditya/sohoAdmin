@@ -94,49 +94,49 @@ export class EditorComponent implements OnInit {
     const blob = this.makeblob(this.croppedImage);
     const name = `${this.blogData.id}${
       blob.type.split("/").length > 1 ? "." + blob.type.split("/")[1] : ""
-    }`;
+      }`;
     const image = new File([blob], name, { type: blob.type });
     this.imageChangedEvent = "";
-    const uploadData = await this.http
+    const { data } = await this.http
       .get<any>(environment.apiUrl + '/blog/' + this.blogData.id + '/image', {
         params: { fileKey: name, fileType: blob.type },
       }).toPromise();
     const formData = new FormData();
-    Object.keys(uploadData.data.fields).forEach((key) => {
-      formData.append(key, uploadData.data.fields[key]);
+    Object.keys(data.fields).forEach((key) => {
+      formData.append(key, data.fields[key]);
     });
     formData.append('file', image);
     let progressInfo = 0;
-    const response = await this.http.post(uploadData.data.url, formData, {
-       reportProgress: true,
-       observe: 'events',
+    const response = await this.http.post(data.url, formData, {
+      reportProgress: true,
+      observe: 'events',
     }).pipe(
-      // tap((event: HttpEvent<any>) => {
-      //   switch (event.type) {
-      //     case HttpEventType.Sent:
-      //       break;
-      //     case HttpEventType.Response:
-      //       break;
-      //     case 1: {
-      //       if (
-      //         Math.round(progressInfo) !==
-      //         Math.round((event['loaded'] / event['total']) * 100)
-      //       ) {
-      //         progressInfo = (event['loaded'] / event['total']) * 100;
-      //         console.log(progressInfo)
-      //       }
-      //       break;
-      //     }
-      //   }
-      // })
-    ).toPromise();
+      tap((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Sent:
+            break;
+          case HttpEventType.Response:
+            break;
+          case 1: {
+            if (
+              Math.round(progressInfo) !==
+              Math.round((event['loaded'] / event['total']) * 100)
+            ) {
+              progressInfo = (event['loaded'] / event['total']) * 100;
+              console.log(progressInfo)
+            }
+            break;
+          }
+        }
+      })
+    ).subscribe();
 
   }
   back() {
     this.location.back();
   }
 
-  save() {}
-  publish() {}
-  delete() {}
+  save() { }
+  publish() { }
+  delete() { }
 }
