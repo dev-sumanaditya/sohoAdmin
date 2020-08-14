@@ -42,7 +42,7 @@
     align-items: center;
     justify-content: center;
     .cropper {
-      max-height: 70%;
+      max-height: 70vh !important;
       max-width: 70%;
     }
   }
