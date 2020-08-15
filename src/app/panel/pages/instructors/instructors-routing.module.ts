@@ -6,17 +6,16 @@ import { ApplicationsComponent } from './applications/applications.component';
 import { CreateComponent } from './create/create.component';
 import { ApplicationViewerComponent } from './application-viewer/application-viewer.component';
 
-
 const routes: Routes = [
-  {path: 'applications', component: ApplicationsComponent},
-  {path: 'info/:id', component: InfoComponent},
-  {path: 'create', component: CreateComponent},
-  {path: 'view-application/:id', component: ApplicationViewerComponent},
-  {path: '', component: MainComponent}
+  { path: 'applications', component: ApplicationsComponent },
+  { path: 'info/:id', component: InfoComponent },
+  { path: 'create', component: CreateComponent },
+  { path: 'viewapp/:id', component: ApplicationViewerComponent },
+  { path: '', component: MainComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class InstructorsRoutingModule { }
+export class InstructorsRoutingModule {}

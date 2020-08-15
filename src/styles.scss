@@ -1,15 +1,12 @@
-@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
-@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+@import '../node_modules/ag-grid-community/src/styles/ag-grid.scss';
+@import '../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss';
 
 .ag-theme-alpine {
-    @include ag-theme-alpine();
+  @include ag-theme-alpine();
 }
 
 $color-primary: #0052cc;
 $color-secondary: #ddd;
-
-
-
 
 // Colors
 .primary {
@@ -36,8 +33,6 @@ $color-secondary: #ddd;
 .danger {
   color: crimson;
 }
-
-
 
 // Layout
 .row {
@@ -84,7 +79,6 @@ $color-secondary: #ddd;
   align-items: center;
   justify-content: center;
 }
-
 
 // components
 .btn {
@@ -167,8 +161,6 @@ $color-secondary: #ddd;
   justify-content: center;
 }
 
-
-
 //utility
 .spin {
   -webkit-animation: rotating 2s linear infinite;
@@ -197,7 +189,6 @@ $color-secondary: #ddd;
   }
 }
 
-
 //Fixes
 a {
   text-decoration: none;
@@ -207,7 +198,8 @@ a {
   font-family: 'Rubik', sans-serif;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   background-color: #eee;
@@ -221,28 +213,20 @@ img {
   -ms-user-select: none;
 }
 
-
-
-
-
-
-
+.inputError {
+  border: 2px solid red;
+}
 
 /* Desktop */
 @media (min-width: 1025px) and (max-width: 1280px) {
-
 }
-
 
 /* Tab */
 @media (min-width: 768px) and (max-width: 1024px) {
-
 }
-
 
 /* tab/cellphone */
 @media (min-width: 481px) and (max-width: 767px) {
-
 }
 
 /* Smartphone */

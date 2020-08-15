@@ -1,61 +1,79 @@
 <div class="main-ctr col">
   <div class="card col">
     <div class="backRow row">
-      <img src="/assets/utilities/back1.png" class="back" (click)="goBack()" alt="">
+      <img
+        src="/assets/utilities/back1.png"
+        class="back"
+        (click)="goBack()"
+        alt=""
+      />
       <strong class="primary">Instructor Application</strong>
     </div>
-    <div class="ct">
+    <div class="ct" *ngIf="instructorData">
       <div class="top row">
         <div class="image">
-          <img src="/assets/images/demo/profile.jpg" alt="">
+          <img src="{{ user.photoURL }}" alt="" />
         </div>
         <div class="flex-grow right col dark">
-          <h3 class="name">John Doe</h3>
-          <strong class="email">johndoe@gmail.com</strong>
-          <small>Member since 12 July 2019</small>
+          <h3 class="name">{{ user.displayName }}</h3>
+          <strong class="email">{{ user.email }}</strong>
+          <small>Member since - {{ user.createdAt }}</small>
         </div>
         <div class="last col">
-          <div class="btn btn-success">Approve</div>
-          <div class="btn btn-danger">Reject</div>
+          <div class="btn btn-success" (click)="approve()">Approve</div>
+          <div class="btn btn-danger" (click)="reject()">Reject</div>
         </div>
       </div>
       <div class="about">
-        <strong class="dark">Phone: +91 9252707070</strong>
+        <strong class="dark">Phone: {{ instructorData.phoneNumber }}</strong>
       </div>
       <div class="answers">
         <div class="item col">
           <label class="primary">Expertise</label>
-          <div class="ans">Something something something</div>
+          <div class="ans">{{ instructorData.areaOfExpertise }}</div>
         </div>
         <div class="item col">
           <label class="primary">About Yourself</label>
-          <div class="ans">I’m an author, YouTuber, and speaker who is passionate about helping students succeed. Most of my work today is done at College Info Geek – a site I created in 2010 in order to share my experiments in becoming a more effective student. Today, College Info Geek is one of the world’s largest and best-loved resources for students, and includes a blog, podcast, and a YouTube channel with over 1 million subscribers.
-          </div>
+          <div class="ans">{{ instructorData.about }}</div>
         </div>
         <div class="item col">
           <label class="primary">Availability</label>
-          <div class="ans">Weekdays + Weekends</div>
+          <div class="ans">{{ instructorData.availability }}</div>
         </div>
         <div class="item col">
           <label class="primary">Timings</label>
-          <div class="ans">Morning + Evening</div>
+          <div class="ans">{{ instructorData.timing }}</div>
         </div>
         <div class="item col">
           <label class="primary">Maximum Students</label>
-          <div class="ans">200</div>
+          <div class="ans">{{ instructorData.maxNoOfStudents }}</div>
         </div>
         <div class="item col">
           <label class="primary">Social Accounts</label>
-          <div class="ans">Linkedin - <a href="./" class="primary">https://www.linkedin.com/in/johndoe</a></div>
-          <div class="ans">Facebook - <a href="./" class="primary">https://www.linkedin.com/in/johndoe</a></div>
-          <div class="ans">Twitter - <a href="./" class="primary">https://www.linkedin.com/in/johndoe</a></div>
-          <div class="ans">Instagram - <a href="./" class="primary">https://www.linkedin.com/in/johndoe</a></div>
+          <div class="ans">
+            Linkedin -
+            <a href="./" class="primary">{{
+              instructorData.linkedinProfile
+            }}</a>
+          </div>
+          <div class="ans">
+            Facebook -
+            <a href="./" class="primary">{{ instructorData.fbProfile }}</a>
+          </div>
+          <div class="ans">
+            Twitter -
+            <a href="./" class="primary">{{ instructorData.twitterProfile }}</a>
+          </div>
+          <div class="ans">
+            Instagram -
+            <a href="./" class="primary">{{ instructorData.instaProfile }}</a>
+          </div>
         </div>
-        <div class="item col">
+        <div class="item col" *ngIf="instructorData.resumes.length > 0">
           <label class="primary">Resume/File</label>
-          <div class="ans">My-resume.pdf</div>
-          <div class="ans">2.2 MB</div>
-          <div class="ans">File link - <a href="./" class="primary">https://www.files.teachup.com/h8d7h2</a></div>
+          <div class="ans" (click)="viewFile(instructorData.resumes[0])">
+            Click here to view file
+          </div>
         </div>
       </div>
     </div>

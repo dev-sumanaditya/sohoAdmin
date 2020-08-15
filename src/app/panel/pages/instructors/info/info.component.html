@@ -1,16 +1,21 @@
 <div class="main-ctr col">
   <div class="card col info" *ngIf="data">
     <div class="backRow row">
-      <img src="/assets/utilities/back1.png" class="back" (click)="goBack()" alt="">
+      <img
+        src="/assets/utilities/back1.png"
+        class="back"
+        (click)="goBack()"
+        alt=""
+      />
       <strong class="primary">Instructor Information</strong>
     </div>
     <div class="row toprow">
-      <img [src]="data.user.photoURL" alt="" class="mainImg">
+      <img [src]="data.user.photoURL" alt="" class="mainImg" />
       <div class="col rit">
-        <h3>{{data.user.displayName}}</h3>
-        <h4>{{data.user.email}}</h4>
-        <strong class="primary">{{data.user.phoneNumber}}</strong>
-        <small class="dark">{{data.user.id}}</small>
+        <h3>{{ data.user.displayName }}</h3>
+        <h4>{{ data.user.email }}</h4>
+        <strong class="primary">{{ data.user.phoneNumber }}</strong>
+        <small class="dark">{{ data.user.id }}</small>
         <div class="row tags">
           <div class="tag">Verified</div>
         </div>
@@ -18,8 +23,8 @@
     </div>
     <div class="section col">
       <small class="hd primary">Basic info</small>
-      <strong class="dark">{{data.areaOfExpertise}}</strong>
-      <p *ngIf="data.about">About : {{data.about}}</p>
+      <strong class="dark">{{ data.areaOfExpertise }}</strong>
+      <p *ngIf="data.about">About : {{ data.about }}</p>
     </div>
     <div class="section col">
       <small class="hd primary">Activity</small>
@@ -28,20 +33,39 @@
     </div>
     <div class="section col">
       <small class="hd primary">Preferences</small>
-      <label class="tp">Maximum students per course: {{data.maxNoOfStudents}}</label>
-      <label class="tp">Working Days: {{data.availability}}</label>
-      <label class="tp">Timing: {{data.timing}}</label>
-      <br>
-      <label class="tp">Approved By: {{data.createdBy.email}}</label>
-      <label class="tp">Created On : {{data.createdAt}}</label>
+      <label class="tp"
+        >Maximum students per course: {{ data.maxNoOfStudents }}</label
+      >
+      <label class="tp">Working Days: {{ data.availability }}</label>
+      <label class="tp">Timing: {{ data.timing }}</label>
+      <br />
+      <label class="tp">Approved By: {{ data.createdBy.email }}</label>
+      <label class="tp">Created On : {{ data.createdAt }}</label>
     </div>
     <div class="section col">
       <small class="hd primary">Social Accounts</small>
-      <strong class="tp tpsm"><span class="primary" *ngIf="data.linkedinProfile">Linkedin:</span> {{data.linkedinProfile}}</strong>
-      <strong class="tp tpsm"><span class="primary" *ngIf="data.fbProfile">Facebook:</span> {{data.fbProfile}}</strong>
-      <strong class="tp tpsm"><span class="primary" *ngIf="data.instaProfile">Instagram:</span> {{data.instaProfile}}</strong>
-      <strong class="tp tpsm"><span class="primary" *ngIf="data.twitterProfile">Twitter:</span> {{data.twitterProfile}}</strong>
+      <strong class="tp tpsm"
+        ><span class="primary" *ngIf="data.linkedinProfile">Linkedin:</span>
+        {{ data.linkedinProfile }}</strong
+      >
+      <strong class="tp tpsm"
+        ><span class="primary" *ngIf="data.fbProfile">Facebook:</span>
+        {{ data.fbProfile }}</strong
+      >
+      <strong class="tp tpsm"
+        ><span class="primary" *ngIf="data.instaProfile">Instagram:</span>
+        {{ data.instaProfile }}</strong
+      >
+      <strong class="tp tpsm"
+        ><span class="primary" *ngIf="data.twitterProfile">Twitter:</span>
+        {{ data.twitterProfile }}</strong
+      >
     </div>
-
+    <br />
+    <div>
+      <div class="btn btn-danger" (click)="deleteInstructor()">
+        Delete Instructor
+      </div>
+    </div>
   </div>
 </div>

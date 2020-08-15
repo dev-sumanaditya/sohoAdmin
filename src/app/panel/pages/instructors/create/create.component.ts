@@ -8,10 +8,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent implements OnInit {
-
   public selectedUser = null;
   public selectedUserId = null;
   public userSelectForm: FormGroup;
@@ -29,14 +28,11 @@ export class CreateComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.userSelectForm = this.fb.group({
-      userid: [
-        '',
-        [Validators.required]
-      ]
+      userid: ['', [Validators.required]],
     });
 
     this.createInstructorForm = this.fb.group({
@@ -45,68 +41,31 @@ export class CreateComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(7),
-          Validators.maxLength(15)
-        ]
+          Validators.maxLength(15),
+        ],
       ],
-      areaOfExpertise: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(140)
-        ]
-      ],
+      areaOfExpertise: ['', [Validators.required, Validators.maxLength(140)]],
       maxNoOfStudents: [
         null,
-        [
-          Validators.required,
-          Validators.min(1),
-          Validators.max(99999)
-        ]
+        [Validators.required, Validators.min(1), Validators.max(99999)],
       ],
-      weekday: [
-        false
-      ],
-      weekend: [
-        false
-      ],
-      morning: [
-        false
-      ],
-      afternoon: [
-        false
-      ],
-      evening: [
-        false
-      ],
-      linkedinProfile: [
-        null,
-        [
-          Validators.minLength(10),
-        ]
-      ],
-      fbProfile: [
-        null,
-        [
-          Validators.minLength(10)
-        ]
-      ],
-      twitterProfile: [
-        null,
-        [
-          Validators.minLength(10)
-        ]
-      ],
-      instaProfile: [
-        null,
-        [
-          Validators.minLength(10)
-        ]
-      ],
+      weekday: [false],
+      weekend: [false],
+      morning: [false],
+      afternoon: [false],
+      evening: [false],
+      linkedinProfile: [null, [Validators.minLength(10)]],
+      fbProfile: [null, [Validators.minLength(10)]],
+      twitterProfile: [null, [Validators.minLength(10)]],
+      instaProfile: [null, [Validators.minLength(10)]],
     });
   }
 
   get userFormControl() {
     return this.userSelectForm.controls;
+  }
+  get instructorFormControl() {
+    return this.createInstructorForm.controls;
   }
 
   goBack() {
@@ -117,17 +76,21 @@ export class CreateComponent implements OnInit {
     this.submitted = true;
     if (this.userSelectForm.valid) {
       this.loading = true;
-      this.http.get<any>(environment.apiUrl + '/user/' + this.userSelectForm.value.userid).subscribe(
-        ({data}) => {
-          this.selectedUser = data;
-          this.selectedUserId = data.id;
-          this.loading = false;
-        },
-        err => {
-          this.loading = false;
-          this.error = err;
-        }
-      );
+      this.http
+        .get<any>(
+          environment.apiUrl + '/user/' + this.userSelectForm.value.userid
+        )
+        .subscribe(
+          ({ data }) => {
+            this.selectedUser = data;
+            this.selectedUserId = data.id;
+            this.loading = false;
+          },
+          (err) => {
+            this.loading = false;
+            this.error = err;
+          }
+        );
     }
   }
 
@@ -137,17 +100,47 @@ export class CreateComponent implements OnInit {
       return;
     }
     const data = this.createInstructorForm.value;
-    data.availability = ['weekday', 'weekend'].filter(day => !!data[day]).join(',');
-    data.timing = ['morning', 'afternoon', 'evening'].filter(day => !!data[day]).join(',');
+    data.availability = ['weekday', 'weekend']
+      .filter((day) => !!data[day])
+      .join(',');
+    data.timing = ['morning', 'afternoon', 'evening']
+      .filter((day) => !!data[day])
+      .join(',');
     data.userId = this.selectedUserId;
-    this.http.post<any>(environment.apiUrl + '/instructor/create', data).subscribe(
-      dat => {
-        console.log(dat);
-        this.router.navigate(['/instructors']);
-      }, err => {
-        console.log(err);
-      }
-    );
+    data.linkedinProfile =
+      !!data.linkedinProfile &&
+      !!data.linkedinProfile.trim() &&
+      data.linkedinProfile.trim().length > 0
+        ? data.linkedinProfile
+        : null;
+    data.instaProfile =
+      !!data.instaProfile &&
+      !!data.instaProfile.trim() &&
+      data.instaProfile.trim().length > 0
+        ? data.instaProfile
+        : null;
+    data.fbProfile =
+      !!data.fbProfile &&
+      !!data.fbProfile.trim() &&
+      data.fbProfile.trim().lenght > 0
+        ? data.fbProfile
+        : null;
+    data.twitterProfile =
+      !!data.twitterProfile &&
+      !!data.twitterProfile.trim() &&
+      data.twitterProfile.trim().lenght > 0
+        ? data.twitterProfile
+        : null;
+    this.http
+      .post<any>(environment.apiUrl + '/instructor/create', data)
+      .subscribe(
+        (dat) => {
+          console.log(dat);
+          this.router.navigate(['/instructors']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
-
 }
