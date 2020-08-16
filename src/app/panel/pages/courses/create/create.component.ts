@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import {IMyDpOptions} from 'mydatepicker';
+import { IMyDpOptions } from 'mydatepicker';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -9,10 +9,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent implements OnInit {
-
   public instructor = null;
   public instructorID = '';
 
@@ -23,6 +22,10 @@ export class CreateComponent implements OnInit {
   public lessonForm: FormGroup;
   public lessonSubmitted = false;
   public lessonError = '';
+
+  public createform: FormGroup;
+  public formsubmitted = false;
+  public formerror = '';
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -48,13 +51,13 @@ export class CreateComponent implements OnInit {
         ['bold', 'italic', 'underline', 'strike'],
         [{ header: 1 }, { header: 2 }],
         ['blockquote', 'code-block'],
-        [{ list: 'bullet' }, { list: 'ordered'}],
+        [{ list: 'bullet' }, { list: 'ordered' }],
         [{ script: 'sub' }, { script: 'super' }],
         [{ indent: '-1' }, { indent: '+1' }],
         [{ header: [1, 2, 3, false] }],
         [{ color: [] }, { background: [] }],
         [{ align: [] }],
-      ]
+      ],
     };
   }
 
@@ -74,9 +77,20 @@ export class CreateComponent implements OnInit {
           Validators.required,
           Validators.min(10),
           Validators.max(360),
-          Validators.pattern('^[1-9][0-9]*0$')
+          Validators.pattern('^[1-9][0-9]*0$'),
         ],
       ],
+    });
+
+    this.createform = this.fb.group({
+      title: ['', [Validators.required]],
+      subtitle: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
+      startTime: ['', [Validators.required]],
+      about: ['', [Validators.required]],
+      category: ['', [Validators.required]],
     });
   }
 
@@ -87,17 +101,26 @@ export class CreateComponent implements OnInit {
   onSubmit() {
     this.lessonSubmitted = true;
     if (this.lessonForm.valid) {
-      this.addLesson(this.lessonForm.value.lessonName, this.lessonForm.value.lessonDuration);
+      this.addLesson(
+        this.lessonForm.value.lessonName,
+        this.lessonForm.value.lessonDuration
+      );
     } else {
       return;
     }
   }
   addLesson(nm, dtn) {
-    this.lessons.push({id: Math.floor(Math.random() * 9999999), name: nm, duration: dtn});
+    this.lessons.push({
+      id: Math.floor(Math.random() * 9999999),
+      name: nm,
+      duration: dtn,
+    });
     this.lessonSubmitted = false;
   }
   removeLesson(id) {
-    const filteredArray = this.lessons.filter((item) => { return item.id !== id; });
+    const filteredArray = this.lessons.filter((item) => {
+      return item.id !== id;
+    });
     this.lessons = filteredArray;
   }
 
@@ -106,10 +129,12 @@ export class CreateComponent implements OnInit {
   }
 
   selectInstructor() {
-    this.http.get<any>(environment.apiUrl + '/instructor/' + this.instructorID).subscribe( data => {
-      this.instructor = data.data;
-      console.log(data);
-    });
+    this.http
+      .get<any>(environment.apiUrl + '/instructor/' + this.instructorID)
+      .subscribe((data) => {
+        this.instructor = data.data;
+        console.log(data);
+      });
   }
 
   changedEditor($event) {
@@ -120,10 +145,9 @@ export class CreateComponent implements OnInit {
     this.imageChangedEvent = event;
   }
   imageCropped(event: ImageCroppedEvent) {
-      this.croppedImage = event.base64;
+    this.croppedImage = event.base64;
   }
   loadImageFailed() {
     // show message
   }
-
 }
